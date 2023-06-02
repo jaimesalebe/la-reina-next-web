@@ -21,11 +21,11 @@ function Player() {
                         ? <marquee className='text-white text-center px-10'>
                             {`¡Algo ha salido mal! Escoja una ciudad valida o intente reproducir nuevamente.`}
                         </marquee>
-                        : <span className='text-white'>La reina fm - Barranquilla</span>
+                        : <span className='text-white '>La Reina FM</span>
                     }
                     <div className='flex justify-center items-center gap-10'>
                         <input type='range' className=" h-2 accent-yellow rounded-lg appearance-none cursor-grab bg-black/30 hidden sm:block" onChange={handleVolume} />
-                        <button className={`bg-yellow p-4 rounded-full text-darkblue-300 font-semibold`} disabled={isLoading} onClick={togglePlayPause}> {isLoading ? <Waveform size={20} color='#212121' /> : isPlaying ? <FaPause /> : <FaPlay />} </button>
+                        <button className={`bg-yellow hover:bg-yellow/70 p-4 rounded-full text-darkblue-300 font-semibold`} disabled={isLoading} onClick={togglePlayPause}> {isLoading ? <Waveform size={20} color='#212121' /> : isPlaying ? <FaPause /> : <FaPlay />} </button>
                     </div>
                 </div>
             </div>
