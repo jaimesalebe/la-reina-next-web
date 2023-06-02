@@ -35,7 +35,7 @@ const Navbar = () => {
 
     return (
 
-        <header className='px-9 p-4 flex flex-wrap justify-between items-center'>
+        <header className='container mx-auto my-5 px-4 sm:px-0 flex flex-wrap justify-between items-center'>
             <Link href={'/'} className='transition-all hover:scale-110'>
                 <Logo/>
             </Link>

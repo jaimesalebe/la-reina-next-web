@@ -14,9 +14,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`bg-darkblue-300 ${inter.className}`}>
-        <Navbar/>
-        {children}
-        <Player/>
+        <Navbar />
+        <main className='flex flex-col gap-5 container sm:mx-auto'>
+          {children}
+        </main>
+        <footer className='text-white text-center'>
+          La Reina Fm
+        </footer>
+        <Player />
       </body>
     </html>
   )

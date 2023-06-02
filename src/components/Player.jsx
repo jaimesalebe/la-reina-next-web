@@ -9,7 +9,7 @@ function Player() {
 
     return (
         <>
-            <div className={`grid place-items-center absolute bottom-0 w-full ${isPlaying && "shadow-2xl shadow-white"} ${error && "shadow-none"}`}>
+            <div className={`grid place-items-center fixed z-10 bottom-0 w-full ${isPlaying && "shadow-2xl shadow-white"} ${error && "shadow-none"}`}>
                 <audio ref={audioPlayer} src={frecuencia}></audio>
                 <div className={`bg-darkblue-200 h-24 w-full flex justify-between items-center px-7 gap-10 ${error && "border border-red-700"}`}>
                     <select id='playerSelect' className={`text-darkblue-300 rounded-md bg-yellow font-semibold p-1`} onChange={handleFrecuencia}>

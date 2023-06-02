@@ -14,3 +14,7 @@
     min-width: 0;
   }
   
+  .images{
+    height: auto;
+    width: auto;
+  }
