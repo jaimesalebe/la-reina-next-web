@@ -7,7 +7,7 @@ import { LineWobble } from '@uiball/loaders'
 import Image from 'next/image'
 
 export const EmblaCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" })
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center"}, [Autoplay()])
   const [selectedIndex, setSelectedIndex] = useState(0)
   const carouselRef = useRef(null);
 
