@@ -15,10 +15,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`bg-darkblue-300 ${inter.className}`}>
         <Navbar />
-        <main className='flex flex-col gap-5 container sm:mx-auto'>
+        <main className='flex flex-col gap-10 container sm:mx-auto'>
           {children}
         </main>
-        <footer className='text-white text-center'>
+        <footer className='text-white text-center m-24'>
           La Reina Fm
         </footer>
         <Player />
