@@ -1,8 +1,7 @@
 import Card from './Card'
-import Link from 'next/link'
 
 async function getPosts() {
-    const res = await fetch('http://34.234.73.220:1337/api/posts', { next: { cache: 'no-store', revalidate: 60 } });
+    const res = await fetch('http://34.234.73.220:1337/api/posts', { next: { revalidate: 'no-store' } });
 
     const { data } = await res.json()
 
