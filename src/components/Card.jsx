@@ -1,19 +1,19 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-function Card({ title, subtitle, description, link }) {
+function Card({ title, subtitle, description, image, tags, link }) {
     return (
-        <article className='flex flex-col justify-center items-center bg-darkblue-100 rounded-lg  sm:w-full hover:scale-105 transition-all duration-500'>
+        <article className=' h-full justify-center bg-darkblue-100 rounded-lg  sm:w-full hover:scale-105 transition-all duration-500'>
             <Link href={link}>
-                <figure>
-                    <Image width={500} height={100} className='rounded-t-md object-cover' alt='' src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" />
+                <figure className='flex flex-col h-full justify-between' >
+                    <Image width={600} height={365} className='rounded-t-md object-cover w-full h-full' alt='' src={image} />
                     <figcaption className='flex flex-col justify-between p-3 text-start'>
                         <header className='leading-10'>
                             <h3 className='text-gray-600 line-clamp-1'>{subtitle}</h3>
-                            <div className='flex gap-3'>
-                                <span className='bg-yellow p-0.5 text-darkblue-300 text-sm font-semibold rounded-md '>Vallenato</span>
-                                <span className='bg-yellow p-0.5 text-darkblue-300 text-sm font-semibold rounded-md '>Caja</span>
-                                <span className='bg-yellow p-0.5 text-darkblue-300 text-sm font-semibold rounded-md '>Acordeon</span>
+                            <div className='flex gap-3 snap-mandatory flex-wrap'>
+                                {tags.map((tag, index) => (
+                                    <span key={index} className='bg-yellow p-0.5 text-darkblue-300 text-xs line-clamp-1 font-semibold rounded-md'>{tag}</span>
+                                ))}
                             </div>
                         </header>
                         <footer>

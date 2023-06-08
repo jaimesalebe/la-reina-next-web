@@ -1,4 +1,5 @@
 import { EmblaCarousel } from "@/components/EmblaCarousel";
+import RecommendedVideos from "@/components/Modal";
 import News from "@/components/News";
 import Link from "next/link";
 
@@ -14,6 +15,7 @@ export default function Home() {
           </p>
         </Link>
       </News>
+      <RecommendedVideos/>
     </>
   )
 }

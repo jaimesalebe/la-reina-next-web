@@ -1,6 +1,6 @@
 
 export async function getNewFiltered(slug) {
-    const res = await fetch(`http://34.234.73.220:1337/api/posts?populate=*&filters[slug][$eq]=${slug}`, { next: { revalidate: 'no-store' } })
+    const res = await fetch(`https://strapi-production-e78c.up.railway.app/api/posts?populate=*&filters[slug][$eq]=${slug}`, { next: { revalidate: 'no-store' } })
     return res.json();
 }
 

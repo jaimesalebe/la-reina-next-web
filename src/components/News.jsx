@@ -1,14 +1,17 @@
 import Card from './Card'
 
 async function getPosts() {
-    const res = await fetch('http://34.234.73.220:1337/api/posts', { next: { revalidate: 'no-store' } });
+    const res = await fetch('https://strapi-production-e78c.up.railway.app/api/posts?populate=*', { next: { revalidate: 'no-store' } });
 
     const { data } = await res.json()
 
     const mappedPost = data?.map(post => ({
         id: post.id,
         title: post.attributes.title,
+        subtitle: post.attributes.subtitle,
         description: post.attributes.description,
+        image: post.attributes.image.data[0].attributes.formats.small.url,
+        tags: post.attributes.tags,
         slug: post.attributes.slug,
     }))
 
@@ -33,6 +36,8 @@ async function News({children}) {
                         title={post.title}
                         subtitle={post.subtitle}
                         description={post.description}
+                        image={post.image}
+                        tags={post.tags}
                         link={`/noticias/${post.slug}`}
                     />
                 ))}
