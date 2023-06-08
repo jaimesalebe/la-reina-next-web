@@ -26,7 +26,7 @@ function VideosSection({ videoID, singerImage }) {
 
     return (
         <>
-            <article className="w-96">
+            <article className="w-96 hover:scale-105 transition-all duration-500">
                 <Image src={singerImage} alt="" height={600} width={500} onClick={handleOpen} className="cursor-pointer rounded-md h-full w-full " />
                 <Modal handleClose={handleClose} isClose={isClose}>
                     {!isClose && <iframe src={`https://www.youtube.com/embed/${videoID}`} className="w-3/4 h-1/4 sm:w-1/2 sm:h-1/2 md:w-4/6 md:h-1/3 lg:w-1/2 lg:h-1/2"  />}
@@ -58,7 +58,7 @@ async function RecommendedVideos() {
     return (
         <>  
             <h1 className="text-3xl font-bold text-center text-white">Videos recomendados</h1>
-            <section className="flex justify-center flex-wrap gap-2">
+            <section className="flex justify-center flex-wrap gap-5">
                 {
                     data?.map((video) => (
                         <VideosSection
