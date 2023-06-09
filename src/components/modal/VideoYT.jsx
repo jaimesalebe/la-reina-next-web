@@ -1,18 +1,9 @@
 'use client'
-import Image from "next/image"
-import { useEffect, useState } from "react"
 
-function Modal({ handleClose, isClose, children }) {
-    return (
-        <div onClick={handleClose} className={`backdrop-blur-sm  fixed inset-0 bg-black/40 z-30 h-screen grid place-items-center ${isClose && 'transition-all hidden'}`}>
-            {children}
-        </div>
-    )
-}
+import Modal from "./Modal"
+import { useState } from "react"
 
-
-
-function VideosSection({ videoID, children }) {
+function Video({ singer, song, videoID, children }) {
 
     const [isClose, setIsClose] = useState(true)
 
@@ -31,8 +22,8 @@ function VideosSection({ videoID, children }) {
                 <div className="relative">
                     {children}
                     <div onClick={handleOpen} className="sm:opacity-0 transition-all duration-500 rounded-md absolute inset-0 bg-gradient-to-tl from-black to-yellow/10 sm:hover:opacity-100 flex flex-col justify-end items-end cursor-pointer">
-                        <h4 className="text-white text-2xl px-2 ">Nombre del artista</h4>
-                        <p className="text-white p-2">Nombre de la canción</p>
+                        <h4 className="text-white text-2xl px-2 ">{singer}</h4>
+                        <p className="text-white p-2">{song}</p>
                     </div>
 
                 </div>
@@ -45,4 +36,4 @@ function VideosSection({ videoID, children }) {
 }
 
 
-export default VideosSection
+export default Video
