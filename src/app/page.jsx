@@ -1,5 +1,5 @@
 import { EmblaCarousel } from "@/components/EmblaCarousel";
-import RecommendedVideos from "@/components/Modal";
+import RecommendedVideos from "@/components/RecommendedVideos";
 import News from "@/components/News";
 import Link from "next/link";
 
