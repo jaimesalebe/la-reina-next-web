@@ -2,6 +2,7 @@ import { EmblaCarousel } from "@/components/EmblaCarousel";
 import RecommendedVideos from "@/components/RecommendedVideos";
 import News from "@/components/News";
 import Link from "next/link";
+import LasFinalistas from "@/components/LasFinalistas";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         </Link>
       </News>
       <RecommendedVideos/>
+      <LasFinalistas/>
     </>
   )
 }

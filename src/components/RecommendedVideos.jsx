@@ -9,7 +9,7 @@ async function RecommendedVideos() {
 
     return (
         <>
-            <h1 className="text-4xl font-bold text-center text-white">Videos recomendados</h1>
+            <h1 className="text-3xl font-bold text-center text-white">Videos recomendados</h1>
             <section className="flex justify-center flex-wrap gap-5">
                 {
                     recommendedVideos?.map((video) => (
