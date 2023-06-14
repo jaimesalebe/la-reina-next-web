@@ -4,7 +4,7 @@ import usePlayer from '@/hooks/usePlayer';
 import Image from 'next/image'
 import {useState } from "react";
 
-const ImageAudio = ({ audio }) => {
+const ImageAudio = ({ audio, singerImage }) => {
 
     const { isPlaying, audioPlayer, togglePlayPause } = usePlayer()
     const [currentTime, setCurrentTime] = useState(0);
@@ -27,9 +27,9 @@ const ImageAudio = ({ audio }) => {
         <div>
             <div className="relative">
                 <audio ref={audioPlayer} src={audio} onTimeUpdate={handleTimeUpdate} />
-                <Image className="w-16 h-16 rounded-full" src="https://yt3.googleusercontent.com/muHfpLnRTVcfk8M7D0afg8RvjL1iJmYCjHSd00vGRTnXn5haR0oRkNUjwLMnNHHJh1CB2NCnIA=s900-c-k-c0x00ffffff-no-rj" alt="Jese image" width={505} height={505} />
-                <button className='absolute rounded-full text-black inset-0 opacity-100 sm:opacity-0 hover:opacity-100 transition-opacity grid place-items-center' onClick={togglePlayPause}>
-                    {isPlaying ? <FaPause /> : <FaPlay />}
+                <Image className="object-cover object-center-top w-16 h-16 rounded-full" src={singerImage} alt="Jese image" width={505} height={505} />
+                <button className='absolute rounded-full text-black inset-0 opacity-100 sm:opacity-0 hover:opacity-100 transition-opacity grid place-items-center bg-gradient-to-tl from-black to-yellow/10' onClick={togglePlayPause}>
+                    {isPlaying ? <FaPause color="#000814" /> : <FaPlay color="#000814" />}
                 </button>
             </div>
             <div>

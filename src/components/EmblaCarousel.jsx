@@ -5,11 +5,14 @@ import Autoplay from 'embla-carousel-autoplay'
 import { useEffect, useRef, useState } from 'react'
 import { LineWobble } from '@uiball/loaders'
 import Image from 'next/image'
+import { getPostFilteredAtemporal } from '../../services/getData'
+import { data } from 'autoprefixer'
+import Link from 'next/link'
 
 export const EmblaCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center"}, [Autoplay()])
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" }, [Autoplay()])
   const [selectedIndex, setSelectedIndex] = useState(0)
-  const carouselRef = useRef(null);
+  const [posts, setPosts] = useState(null)
 
   useEffect(() => {
     if (emblaApi) {
@@ -20,41 +23,35 @@ export const EmblaCarousel = () => {
     }
   }, [emblaApi]);
 
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getPostFilteredAtemporal()
+      setPosts(data)
+    }
+
+    fetchData()
+  }, [])
+
+
 
   return (
     <div>
       <div className="embla text-white sm:rounded-md" ref={emblaRef}>
         <div className="embla__container h-80">
-          <div className="embla__slide grid place-items-center">
-            <Image
-              width={2000}
-              height={1000}
-              alt=''
-              priority={true}
-              src={
-                "https://images.unsplash.com/photo-1519802772250-a52a9af0eacb"}
-              className='w-full object-cover object-center' />
-          </div>
-          <div className="embla__slide grid place-items-center">
-            <Image
-              width={2000}
-              height={1000}
-              alt=''
-              priority={true}
-              src={
-                "https://images.unsplash.com/photo-1666919643134-d97687c1826c"}
-              className='w-full object-cover object-center' />
-          </div>
-          <div className="embla__slide grid place-items-center">
-            <Image
-              width={2000}
-              height={1000}
-              alt=''
-              priority={true}
-              src={
-                "https://images.unsplash.com/photo-1623079398404-4a024f3f4aee"}
-              className='w-full object-cover object-' />
-          </div>
+          {
+            posts?.map(post => (
+              <div className="embla__slide grid place-items-center relative" key={post.id}>
+                <Image
+                  width={post.width}
+                  height={post.height}
+                  alt=''
+                  priority={true}
+                  src={post.image}
+                  className='w-full object-cover object-center' />
+                  <Link className='absolute inset-0 grid place-items-center text-3xl font-bold text-center p-3 bg-gradient-to-tl from-black to-yellow/10' href={`noticias/${post.slug}`}><span className='hover:underline'>{post.title}</span></Link>
+              </div>
+            ))
+          }
         </div>
       </div>
       <div className='flex justify-center gap-2 mt-2'>
@@ -67,8 +64,8 @@ export const EmblaCarousel = () => {
               onClick={() => (emblaApi.scrollTo(index))}
             />
 
-          )) 
-          : <LineWobble color='#fff' size={100}/>}
+          ))
+          : <LineWobble color='#fff' size={100} />}
       </div>
     </div>
   )

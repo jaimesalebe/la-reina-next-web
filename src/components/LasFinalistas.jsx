@@ -1,6 +1,11 @@
+import { getFinalistas } from '../../services/getData'
 import ImageAudio from './ImageAudio'
 
-function LasFinalistas() {
+
+async function LasFinalistas() {
+
+    const songs = await getFinalistas()
+
     return (
         <section className='px-5 sm:px-0 flex flex-wrap gap-5 justify-evenly items-center'>
             <h1 className='text-white font-bold text-3xl'>Las Finalistas 🔝🔥</h1>
@@ -16,51 +21,23 @@ function LasFinalistas() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className=" text-white">
-                            <td className=''>
-                                <ul className='p-2 whitespace-nowrap flex items-center'>
-                                    <li className="sm:w-30 sm:h-full flex-shrink-0 mr-2 sm:mr-3">
-                                        <ImageAudio audio="https://lareinadelvallenato.co/wp-content/uploads/2022/06/El-carro-Ford-Carlos-Vives.mp3?_=1" />
-                                    </li>
-                                    <li className="font-medium">
-                                        <p> Carlos Vives</p>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td className="p-2 whitespace-nowrap text-center">
-                                El carro Ford
-                            </td>
-                        </tr>
-                        <tr className=" text-white">
-                            <td className=''>
-                                <ul className='p-2 whitespace-nowrap flex items-center'>
-                                    <li className="sm:w-30 sm:h-full flex-shrink-0 mr-2 sm:mr-3">
-                                        <ImageAudio audio="https://lareinadelvallenato.co/wp-content/uploads/2022/06/El-carro-Ford-Carlos-Vives.mp3?_=1" />
-                                    </li>
-                                    <li className="font-medium">
-                                        <p> Carlos Vives</p>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td className="p-2 whitespace-nowrap text-center">
-                                El carro Ford
-                            </td>
-                        </tr>
-                        <tr className=" text-white">
-                            <td className=''>
-                                <ul className='p-2 whitespace-nowrap flex items-center'>
-                                    <li className="sm:w-30 sm:h-full flex-shrink-0 mr-2 sm:mr-3">
-                                        <ImageAudio audio="https://lareinadelvallenato.co/wp-content/uploads/2022/06/El-carro-Ford-Carlos-Vives.mp3?_=1" />
-                                    </li>
-                                    <li className="font-medium">
-                                        <p> Carlos Vives</p>
-                                    </li>
-                                </ul>
-                            </td>
-                            <td className="p-2 whitespace-nowrap text-center">
-                                El carro Ford
-                            </td>
-                        </tr>
+                        {songs.map((song) => (
+                            <tr className=" text-white" key={song.id}>
+                                <td className=''>
+                                    <ul className='p-2 flex items-center'>
+                                        <li className="sm:w-30 sm:h-full flex-shrink-0 mr-2 sm:mr-3">
+                                            <ImageAudio audio={song.song} singerImage={song.singerImage} />
+                                        </li>
+                                        <li className="font-medium">
+                                            <p>{song.singer}</p>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td className="p-2  text-center">
+                                    {song.songName}
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </article>

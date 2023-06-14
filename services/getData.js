@@ -21,7 +21,7 @@ export async function getPosts() {
             title: post.attributes.title,
             subtitle: post.attributes.subtitle,
             description: post.attributes.description,
-            image: post.attributes.image.data[0].attributes.url,
+            image: post.attributes.image.data[0].attributes.formats.small.url,
             tags: post.attributes.tags,
             slug: post.attributes.slug,
         }))
@@ -37,7 +37,7 @@ export async function getPosts() {
 export async function getRecommendedVideos() {
     try {
         const res = await fetch('https://strapi-production-e78c.up.railway.app/api/recommended-videos?sort[createdAt]=desc&populate=*', { next: { revalidate: 60 } })
-        const {data} = await res.json()
+        const { data } = await res.json()
 
         const mappedRecommendedVideos = data?.map(recommendedVideos => ({
             id: recommendedVideos.id,
@@ -56,8 +56,49 @@ export async function getRecommendedVideos() {
 
 export async function getPostFiltered(slug) {
     try {
-        const res = await fetch(`https://strapi-production-e78c.up.railway.app/api/posts?populate=*&filters[slug][$eq]=${slug}`, { next: { revalidate: 'no-store' } })
+        const res = await fetch(`https://strapi-production-e78c.up.railway.app/api/posts?populate=*&filters[slug][$eq]=${slug}`, { next: { revalidate: '60' } })
         return res.json();
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+export async function getPostFilteredAtemporal(){
+    const res = await fetch("https://strapi-production-e78c.up.railway.app/api/posts?populate=*&filters[atemporal][$eq]=true", { next: { revalidate: '60' } })
+    const {data} = await res.json();
+
+    const mappedAtemporal = data?.map(postAtemporal => ({
+        id: postAtemporal.id,
+        title: postAtemporal.attributes.title,
+        subtitle: postAtemporal.attributes.subtitle,
+        description: postAtemporal.attributes.description,
+        slug: postAtemporal.attributes.slug,
+        image: postAtemporal.attributes.image.data[0].attributes.url,
+        width: postAtemporal.attributes.image.data[0].attributes.width,
+        height: postAtemporal.attributes.image.data[0].attributes.height
+    }))
+
+    return mappedAtemporal
+}
+
+export async function getFinalistas() {
+    try {
+        const res = await fetch("https://strapi-production-e78c.up.railway.app/api/finalistas?populate=*", { next: { revalidate: '60' } })
+        const {data} = await res.json();
+
+
+        const mappedFinalistas = data.map((finalista) => ({
+            id: finalista.id,
+            singer: finalista.attributes.singer,
+            singerImage: finalista.attributes.singerImage.data[0].attributes.formats.thumbnail.url,
+            songName: finalista.attributes.songName,
+            song:  finalista.attributes.song.data[0].attributes.url
+        }))
+
+
+        return mappedFinalistas
+        
     }
     catch (error) {
         console.log(error);

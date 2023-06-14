@@ -1,12 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { Suspense } from 'react'
 
 function Card({ title, subtitle, description, image, tags, link }) {
     return (
         <article className=' h-full justify-center bg-darkblue-100 rounded-lg  sm:w-full hover:scale-105 transition-all duration-500'>
             <Link href={link}>
                 <figure className='flex flex-col h-full justify-between' >
-                    <Image width={600} height={365} className='rounded-t-md object-cover w-full h-full' alt='' src={image} />
+                    <Suspense fallback={<p className='bg-white'>Cargando...</p>}>
+                        <Image width={600} height={365} className='rounded-t-md object-cover w-full h-full' alt='' src={image} />
+                    </Suspense>
                     <figcaption className='flex flex-col justify-between p-3 text-start'>
                         <header className='leading-10'>
                             <h3 className='text-gray-600 line-clamp-1'>{subtitle}</h3>
