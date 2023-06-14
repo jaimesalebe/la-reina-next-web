@@ -10,7 +10,7 @@ import { data } from 'autoprefixer'
 import Link from 'next/link'
 
 export const EmblaCarousel = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" }, [Autoplay()])
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" }, [Autoplay({delay: 7000, stopOnMouseEnter: true, stopOnInteraction: false})])
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [posts, setPosts] = useState(null)
 
@@ -42,8 +42,8 @@ export const EmblaCarousel = () => {
             posts?.map(post => (
               <div className="embla__slide grid place-items-center relative" key={post.id}>
                 <Image
-                  width={post.width}
-                  height={post.height}
+                  width={1280}
+                  height={320}
                   alt=''
                   priority={true}
                   src={post.image}

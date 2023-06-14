@@ -19,7 +19,7 @@ const nextConfig = {
             },
             {
                 protocol: 'https',
-                hostname: 'yt3.googleusercontent.com',
+                hostname: 's1.1zoom.me',
                 port: '',
             }
         ]

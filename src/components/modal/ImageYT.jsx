@@ -6,7 +6,7 @@ async function ImageYT({videoID}) {
     const yt = await fetchYoutube(videoID)
 
     return (
-        <Image src={yt?.items[0]?.snippet?.thumbnails?.maxres?.url} alt="" height={600} width={500} className="rounded-md h-full w-full" />
+        <Image src={yt?.items[0]?.snippet?.thumbnails?.high?.url} alt="" height={360} width={480} className="rounded-md h-full w-full object-cover" />
     )
 }
 
